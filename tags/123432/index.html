@@ -167,11 +167,19 @@
                     <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                                <a class="fa Email" href="/xusongsheng95@163.com" title="Email"></a>
                             
-                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                                <a class="fa 新浪微博" href="http://weibo.com/p/1005052947749035/home" title="新浪微博"></a>
                             
-                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                                <a class="fa GitHub" href="https://github.com/xusongsheng" title="GitHub"></a>
+                            
+                                <a class="fa 博客园" href="http://www.cnblogs.com/xiaosongbiog/" title="博客园"></a>
+                            
+                                <a class="fa CSDN" href="http://my.csdn.net/xsshxssh" title="CSDN"></a>
+                            
+                                <a class="fa QQ" href="/996944554" title="QQ"></a>
+                            
+                                <a class="fa 微信" href="/xusongsheng996944554" title="微信"></a>
                             
                         </ul>
                     </nav>
@@ -180,7 +188,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/123432/">123432</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/3243/">3243</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fds/">fds</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/123432/">123432</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li></ul>
                     </div>
                 </section>
                 
@@ -245,11 +253,19 @@
             <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                                <a class="fa Email" target="_blank" href="/xusongsheng95@163.com" title="Email"></a>
                             
-                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/p/1005052947749035/home" title="新浪微博"></a>
                             
-                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                                <a class="fa GitHub" target="_blank" href="https://github.com/xusongsheng" title="GitHub"></a>
+                            
+                                <a class="fa 博客园" target="_blank" href="http://www.cnblogs.com/xiaosongbiog/" title="博客园"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://my.csdn.net/xsshxssh" title="CSDN"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="/996944554" title="QQ"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="/xusongsheng996944554" title="微信"></a>
                             
                         </ul>
             </nav>
@@ -313,7 +329,7 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2016-2017 石家庄吴亦凡
+                2017 石家庄吴亦凡
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
@@ -390,6 +406,23 @@
         }
     
 </script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
