@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/7 | wyf&#39;s Blog</title>
+  <title>简单微博爬虫 | wyf&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="wyf&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2017/07/index.html">
+  <meta name="description" content="#简单微博爬虫一开始想使用Sina Weibo API来获取微博内容，但后来发现新浪微博的API限制实在太多，">
+<meta name="keywords" content="微博,爬虫,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单微博爬虫">
+<meta property="og:url" content="http://yoursite.com/2017/08/04/简单微博爬虫/index.html">
 <meta property="og:site_name" content="wyf&#39;s Blog">
+<meta property="og:description" content="#简单微博爬虫一开始想使用Sina Weibo API来获取微博内容，但后来发现新浪微博的API限制实在太多，">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-04T14:36:01.518Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wyf&#39;s Blog">
+<meta name="twitter:title" content="简单微博爬虫">
+<meta name="twitter:description" content="#简单微博爬虫一开始想使用Sina Weibo API来获取微博内容，但后来发现新浪微博的API限制实在太多，">
   
     <link rel="alternative" href="/atom.xml" title="wyf&#39;s Blog" type="application/atom+xml">
   
@@ -158,225 +163,208 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-简单微博爬虫" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      简单微博爬虫
+    </h1>
+  
+
+        
+        <a href="/2017/08/04/简单微博爬虫/" class="archive-article-date">
+  	<time datetime="2017-08-04T14:34:34.985Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-04</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#简单微博爬虫<br>一开始想使用Sina Weibo API来获取微博内容，但后来发现新浪微博的API限制实在太多，<br><a id="more"></a><br>大家感受一下：<br><a href="http://jbcdn2.b0.upaiyun.com/2016/03/2e69a0dd557fe824d2a5973660bfa4b0.png![Alt" target="_blank" rel="external">http://jbcdn2.b0.upaiyun.com/2016/03/2e69a0dd557fe824d2a5973660bfa4b0.png![Alt</a> text](./1501856664220.png)<br>只能获取当前授权的用户（就是自己），而且只能返回最新的5条，WTF！<br> 所以果断放弃掉这条路，改为『生爬』，因为PC端的微博是Ajax的动态加载，爬取起来有些困难，我果断知难而退，改为对移动端的微博进行爬取，因为移动端的微博可以通过分页爬取的方式来一次性爬取所有微博内容，这样工作就简化了不少。</p>
+<p><strong>最后实现的功能：</strong></p>
+<ul>
+<li>1.输入要爬取的微博用户的user_id，获得该用户的所有微博</li>
+<li>2.文字内容保存到以%user_id命名文本文件中，所有高清原图保存在weibo_image文件夹中</li>
+</ul>
+<p><strong>具体操作：</strong><br> 首先我们要获得自己的cookie，这里只说chrome的获取方法。</p>
+<ul>
+<li>用chrome打开新浪微博移动端</li>
+<li>option+command+i调出开发者工具</li>
+<li>点开Network，将Preserve log选项选中</li>
+<li>输入账号密码，登录新浪微博<br><a href="http://jbcdn2.b0.upaiyun.com/2016/03/49ddcafe0b22ba63ad72d40a1e454762.png![Alt" target="_blank" rel="external">http://jbcdn2.b0.upaiyun.com/2016/03/49ddcafe0b22ba63ad72d40a1e454762.png![Alt</a> text](./1501856685214.png)</li>
+<li>找到m.weibo.cn-&gt;Headers-&gt;Cookie，把cookie复制到代码中的#your cookie处<br><a href="http://jbcdn2.b0.upaiyun.com/2016/03/cf06eb6192f8e248bff71f9235f16d6d.png![Alt" target="_blank" rel="external">http://jbcdn2.b0.upaiyun.com/2016/03/cf06eb6192f8e248bff71f9235f16d6d.png![Alt</a> text](./1501856728777.png)<br><strong>cookie</strong><br>然后再获取你想爬取的用户的user_id，这个我不用多说啥了吧，点开用户主页，地址栏里面那个号码就是user_id<br><a href="http://jbcdn2.b0.upaiyun.com/2016/03/39c1679de85abd165c4e1099c7c951d5.png![Alt" target="_blank" rel="external">http://jbcdn2.b0.upaiyun.com/2016/03/39c1679de85abd165c4e1099c7c951d5.png![Alt</a> text](./1501856750545.png)<br>将python代码保存到weibo_spider.py文件中<br>定位到当前目录下后，命令行执行python weibo_spider.py user_id<br>当然如果你忘记在后面加user_id，执行的时候命令行也会提示你输入<br>最后执行结束<br><a href="http://jbcdn2.b0.upaiyun.com/2016/03/ed1b2db4a18c553751f37f2c7614005f.png![Alt" target="_blank" rel="external">http://jbcdn2.b0.upaiyun.com/2016/03/ed1b2db4a18c553751f37f2c7614005f.png![Alt</a> text](./1501856767770.png)<br><strong>iTerm</strong><br><a href="http://jbcdn2.b0.upaiyun.com/2016/03/484fd2b05cf70bb057cc28ed4d26c6c9.png![Alt" target="_blank" rel="external">http://jbcdn2.b0.upaiyun.com/2016/03/484fd2b05cf70bb057cc28ed4d26c6c9.png![Alt</a> text](./1501856782731.png)<br><a href="http://jbcdn2.b0.upaiyun.com/2016/03/47a7de80defb1489c9d1a990603ab865.png![Alt" target="_blank" rel="external">http://jbcdn2.b0.upaiyun.com/2016/03/47a7de80defb1489c9d1a990603ab865.png![Alt</a> text](./1501856787876.png)<br><strong>小问题：</strong>在我的测试中，有的时候会出现图片下载失败的问题，具体原因还不是很清楚，可能是网速问题，因为我宿舍的网速实在太不稳定了，当然也有可能是别的问题，所以在程序根目录下面，我还生成了一个userid_imageurls的文本文件，里面存储了爬取的所有图片的下载链接，如果出现大片的图片下载失败，可以将该链接群一股脑导进迅雷等下载工具进行下载。</li>
+</ul>
+<p>另外，我的系统是OSX EI Capitan10.11.2，Python的版本是2.7，依赖库用sudo pip install XXXX就可以安装，具体配置问题可以自行stackoverflow，这里就不展开讲了。</p>
+<p>下面我就给出实现代码（严肃脸）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#-*-coding:utf8-*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">import</span> string</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</div><div class="line"></div><div class="line">reload(sys) </div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"><span class="keyword">if</span>(len(sys.argv) &gt;=<span class="number">2</span>):</div><div class="line">    user_id = (int)(sys.argv[<span class="number">1</span>])</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    user_id = (int)(raw_input(<span class="string">u"请输入user_id: "</span>))</div><div class="line"></div><div class="line">cookie = &#123;<span class="string">"Cookie"</span>: <span class="string">"#your cookie"</span>&#125;</div><div class="line">url = <span class="string">'http://weibo.cn/u/%d?filter=1&amp;page=1'</span>%user_id</div><div class="line"></div><div class="line">html = requests.get(url, cookies = cookie).content</div><div class="line">selector = etree.HTML(html)</div><div class="line">pageNum = (int)(selector.xpath(<span class="string">'//input[@name="mp"]'</span>)[<span class="number">0</span>].attrib[<span class="string">'value'</span>])</div><div class="line"></div><div class="line">result = <span class="string">""</span> </div><div class="line">urllist_set = set()</div><div class="line">word_count = <span class="number">1</span></div><div class="line">image_count = <span class="number">1</span></div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">u'爬虫准备就绪...'</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">1</span>,pageNum+<span class="number">1</span>):</div><div class="line"></div><div class="line">  <span class="comment">#获取lxml页面</span></div><div class="line">  url = <span class="string">'http://weibo.cn/u/%d?filter=1&amp;page=%d'</span>%(user_id,page) </div><div class="line">  lxml = requests.get(url, cookies = cookie).content</div><div class="line"></div><div class="line">  <span class="comment">#文字爬取</span></div><div class="line">  selector = etree.HTML(lxml)</div><div class="line">  content = selector.xpath(<span class="string">'//span[@class="ctt"]'</span>)</div><div class="line">  <span class="keyword">for</span> each <span class="keyword">in</span> content:</div><div class="line">    text = each.xpath(<span class="string">'string(.)'</span>)</div><div class="line">    <span class="keyword">if</span> word_count &gt;= <span class="number">4</span>:</div><div class="line">      text = <span class="string">"%d :"</span>%(word_count<span class="number">-3</span>) +text+<span class="string">"\n\n"</span></div><div class="line">    <span class="keyword">else</span> :</div><div class="line">      text = text+<span class="string">"\n\n"</span></div><div class="line">    result = result + text</div><div class="line">    word_count += <span class="number">1</span></div><div class="line"></div><div class="line">  <span class="comment">#图片爬取</span></div><div class="line">  soup = BeautifulSoup(lxml, <span class="string">"lxml"</span>)</div><div class="line">  urllist = soup.find_all(<span class="string">'a'</span>,href=re.compile(<span class="string">r'^http://weibo.cn/mblog/oripic'</span>,re.I))</div><div class="line">  first = <span class="number">0</span></div><div class="line">  <span class="keyword">for</span> imgurl <span class="keyword">in</span> urllist:</div><div class="line">    urllist_set.add(requests.get(imgurl[<span class="string">'href'</span>], cookies = cookie).url)</div><div class="line">    image_count +=<span class="number">1</span></div><div class="line"></div><div class="line">fo = open(<span class="string">"/Users/Personals/%s"</span>%user_id, <span class="string">"wb"</span>)</div><div class="line">fo.write(result)</div><div class="line">word_path=os.getcwd()+<span class="string">'/%d'</span>%user_id</div><div class="line"><span class="keyword">print</span> <span class="string">u'文字微博爬取完毕'</span></div><div class="line"></div><div class="line">link = <span class="string">""</span></div><div class="line">fo2 = open(<span class="string">"/Users/Personals/%s_imageurls"</span>%user_id, <span class="string">"wb"</span>)</div><div class="line"><span class="keyword">for</span> eachlink <span class="keyword">in</span> urllist_set:</div><div class="line">  link = link + eachlink +<span class="string">"\n"</span></div><div class="line">fo2.write(link)</div><div class="line"><span class="keyword">print</span> <span class="string">u'图片链接爬取完毕'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> urllist_set:</div><div class="line">  <span class="keyword">print</span> <span class="string">u'该页面中不存在图片'</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">  <span class="comment">#下载图片,保存在当前目录的pythonimg文件夹下</span></div><div class="line">  image_path=os.getcwd()+<span class="string">'/weibo_image'</span></div><div class="line">  <span class="keyword">if</span> os.path.exists(image_path) <span class="keyword">is</span> <span class="keyword">False</span>:</div><div class="line">    os.mkdir(image_path)</div><div class="line">  x=<span class="number">1</span></div><div class="line">  <span class="keyword">for</span> imgurl <span class="keyword">in</span> urllist_set:</div><div class="line">    temp= image_path + <span class="string">'/%s.jpg'</span> % x</div><div class="line">    <span class="keyword">print</span> <span class="string">u'正在下载第%s张图片'</span> % x</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">      urllib.urlretrieve(urllib2.urlopen(imgurl).geturl(),temp)</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">      <span class="keyword">print</span> <span class="string">u"该图片下载失败:%s"</span>%imgurl</div><div class="line">    x+=<span class="number">1</span></div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">u'原创微博爬取完毕，共%d条，保存路径%s'</span>%(word_count<span class="number">-4</span>,word_path)</div><div class="line"><span class="keyword">print</span> <span class="string">u'微博图片爬取完毕，共%d张，保存路径%s'</span>%(image_count<span class="number">-1</span>,image_path)</div><div class="line"></div><div class="line"></div><div class="line"> <span class="comment">#-*-coding:utf8-*-</span></div><div class="line"> </div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">import</span> string</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</div><div class="line"> </div><div class="line">reload(sys) </div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"><span class="keyword">if</span>(len(sys.argv) &gt;=<span class="number">2</span>):</div><div class="line">    user_id = (int)(sys.argv[<span class="number">1</span>])</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    user_id = (int)(raw_input(<span class="string">u"请输入user_id: "</span>))</div><div class="line"> </div><div class="line">cookie = &#123;<span class="string">"Cookie"</span>: <span class="string">"#your cookie"</span>&#125;</div><div class="line">url = <span class="string">'http://weibo.cn/u/%d?filter=1&amp;page=1'</span>%user_id</div><div class="line"> </div><div class="line">html = requests.get(url, cookies = cookie).content</div><div class="line">selector = etree.HTML(html)</div><div class="line">pageNum = (int)(selector.xpath(<span class="string">'//input[@name="mp"]'</span>)[<span class="number">0</span>].attrib[<span class="string">'value'</span>])</div><div class="line"> </div><div class="line">result = <span class="string">""</span> </div><div class="line">urllist_set = set()</div><div class="line">word_count = <span class="number">1</span></div><div class="line">image_count = <span class="number">1</span></div><div class="line"> </div><div class="line"><span class="keyword">print</span> <span class="string">u'爬虫准备就绪...'</span></div><div class="line"> </div><div class="line"><span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">1</span>,pageNum+<span class="number">1</span>):</div><div class="line"> </div><div class="line">  <span class="comment">#获取lxml页面</span></div><div class="line">  url = <span class="string">'http://weibo.cn/u/%d?filter=1&amp;page=%d'</span>%(user_id,page) </div><div class="line">  lxml = requests.get(url, cookies = cookie).content</div><div class="line"> </div><div class="line">  <span class="comment">#文字爬取</span></div><div class="line">  selector = etree.HTML(lxml)</div><div class="line">  content = selector.xpath(<span class="string">'//span[@class="ctt"]'</span>)</div><div class="line">  <span class="keyword">for</span> each <span class="keyword">in</span> content:</div><div class="line">    text = each.xpath(<span class="string">'string(.)'</span>)</div><div class="line">    <span class="keyword">if</span> word_count &gt;= <span class="number">4</span>:</div><div class="line">      text = <span class="string">"%d :"</span>%(word_count<span class="number">-3</span>) +text+<span class="string">"\n\n"</span></div><div class="line">    <span class="keyword">else</span> :</div><div class="line">      text = text+<span class="string">"\n\n"</span></div><div class="line">    result = result + text</div><div class="line">    word_count += <span class="number">1</span></div><div class="line"> </div><div class="line">  <span class="comment">#图片爬取</span></div><div class="line">  soup = BeautifulSoup(lxml, <span class="string">"lxml"</span>)</div><div class="line">  urllist = soup.find_all(<span class="string">'a'</span>,href=re.compile(<span class="string">r'^http://weibo.cn/mblog/oripic'</span>,re.I))</div><div class="line">  first = <span class="number">0</span></div><div class="line">  <span class="keyword">for</span> imgurl <span class="keyword">in</span> urllist:</div><div class="line">    urllist_set.add(requests.get(imgurl[<span class="string">'href'</span>], cookies = cookie).url)</div><div class="line">    image_count +=<span class="number">1</span></div><div class="line"> </div><div class="line">fo = open(<span class="string">"/Users/Personals/%s"</span>%user_id, <span class="string">"wb"</span>)</div><div class="line">fo.write(result)</div><div class="line">word_path=os.getcwd()+<span class="string">'/%d'</span>%user_id</div><div class="line"><span class="keyword">print</span> <span class="string">u'文字微博爬取完毕'</span></div><div class="line"> </div><div class="line">link = <span class="string">""</span></div><div class="line">fo2 = open(<span class="string">"/Users/Personals/%s_imageurls"</span>%user_id, <span class="string">"wb"</span>)</div><div class="line"><span class="keyword">for</span> eachlink <span class="keyword">in</span> urllist_set:</div><div class="line">  link = link + eachlink +<span class="string">"\n"</span></div><div class="line">fo2.write(link)</div><div class="line"><span class="keyword">print</span> <span class="string">u'图片链接爬取完毕'</span></div><div class="line"> </div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> urllist_set:</div><div class="line">  <span class="keyword">print</span> <span class="string">u'该页面中不存在图片'</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">  <span class="comment">#下载图片,保存在当前目录的pythonimg文件夹下</span></div><div class="line">  image_path=os.getcwd()+<span class="string">'/weibo_image'</span></div><div class="line">  <span class="keyword">if</span> os.path.exists(image_path) <span class="keyword">is</span> <span class="keyword">False</span>:</div><div class="line">    os.mkdir(image_path)</div><div class="line">  x=<span class="number">1</span></div><div class="line">  <span class="keyword">for</span> imgurl <span class="keyword">in</span> urllist_set:</div><div class="line">    temp= image_path + <span class="string">'/%s.jpg'</span> % x</div><div class="line">    <span class="keyword">print</span> <span class="string">u'正在下载第%s张图片'</span> % x</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">      urllib.urlretrieve(urllib2.urlopen(imgurl).geturl(),temp)</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">      <span class="keyword">print</span> <span class="string">u"该图片下载失败:%s"</span>%imgurl</div><div class="line">    x+=<span class="number">1</span></div><div class="line"> </div><div class="line"><span class="keyword">print</span> <span class="string">u'原创微博爬取完毕，共%d条，保存路径%s'</span>%(word_count<span class="number">-4</span>,word_path)</div><div class="line"><span class="keyword">print</span> <span class="string">u'微博图片爬取完毕，共%d张，保存路径%s'</span>%(image_count<span class="number">-1</span>,image_path)</div></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zfb.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wx.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/31/异步编程四种方法/" class="archive-article-date">
-  	<time datetime="2017-07-31T13:35:18.122Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/31/异步编程四种方法/">异步编程的四种方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">微博</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">异步</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/04/简单微博爬虫/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/31/欢迎使用马克飞象/" class="archive-article-date">
-  	<time datetime="2017-07-31T13:08:24.624Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-31</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/08/04/数据挖掘/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          数据挖掘
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/04/中文分词算法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">中文分词算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/31/欢迎使用马克飞象/">马克飞象官方文档</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">马克飞象</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/31/浅谈异步多线程/" class="archive-article-date">
-  	<time datetime="2017-07-31T13:03:17.309Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/31/浅谈异步多线程/">浅谈异步多线程</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">异步</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/29/hexo搭建/" class="archive-article-date">
-  	<time datetime="2017-07-29T09:03:43.269Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/29/hexo搭建/">Hexo搭建网站教程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/28/hello-world/" class="archive-article-date">
-  	<time datetime="2017-07-28T13:50:14.703Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/28/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -399,8 +387,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
