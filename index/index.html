@@ -6,25 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>异步编程的四种方法 | wyf&#39;s Blog</title>
+  <title>wyf&#39;s Blog | wyf&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第一种方法BeginEnvoke EndEnvoke方法，属于“等待”类。">
-<meta name="keywords" content="C#,多线程,异步">
-<meta property="og:type" content="article">
-<meta property="og:title" content="异步编程的四种方法">
-<meta property="og:url" content="http://yoursite.com/2017/07/31/异步编程四种方法/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="wyf&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/index/index.html">
 <meta property="og:site_name" content="wyf&#39;s Blog">
-<meta property="og:description" content="第一种方法BeginEnvoke EndEnvoke方法，属于“等待”类。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pic002.cnblogs.com/images/2012/281227/2012110214543333.png">
-<meta property="og:image" content="http://pic002.cnblogs.com/images/2012/281227/2012110214584264.png">
-<meta property="og:image" content="http://pic002.cnblogs.com/images/2012/281227/2012110215012952.png">
-<meta property="og:image" content="http://pic002.cnblogs.com/images/2012/281227/2012110215043566.png">
-<meta property="og:updated_time" content="2017-08-03T11:19:44.543Z">
+<meta property="og:image" content="http://yoursite.com/img/indexbg.png">
+<meta property="og:updated_time" content="2017-08-04T09:01:16.718Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="异步编程的四种方法">
-<meta name="twitter:description" content="第一种方法BeginEnvoke EndEnvoke方法，属于“等待”类。">
-<meta name="twitter:image" content="http://pic002.cnblogs.com/images/2012/281227/2012110214543333.png">
+<meta name="twitter:title" content="wyf&#39;s Blog">
+<meta name="twitter:image" content="http://yoursite.com/img/indexbg.png">
   
     <link rel="alternative" href="/atom.xml" title="wyf&#39;s Blog" type="application/atom+xml">
   
@@ -168,39 +161,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-异步编程四种方法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="categories-" class="article article-type-categories " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      异步编程的四种方法
+      wyf&#39;s Blog
     </h1>
   
 
         
-        <a href="/2017/07/31/异步编程四种方法/" class="archive-article-date">
-  	<time datetime="2017-07-31T13:35:18.122Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-31</time>
+        <a href="/index/index.html" class="archive-article-date">
+  	<time datetime="2017-08-04T09:01:16.718Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h2><p>BeginEnvoke EndEnvoke方法，属于“等待”类。<br><a id="more"></a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">using System;</div><div class="line">using System.Collections.Generic;</div><div class="line">using System.Linq;</div><div class="line">using System.Text;</div><div class="line">using System.Threading;</div><div class="line"></div><div class="line">namespace 异步调用实现方法汇总</div><div class="line">&#123;</div><div class="line">    /// &lt;summary&gt;</div><div class="line">    /// 异步调用方法总结：</div><div class="line">    /// 1.BeginEnvoke EndEnvoke</div><div class="line">    /// 当使用BeginInvoke异步调用方法时，如果方法未执行完，EndInvoke方法就会一直阻塞，直到被调用的方法执行完毕</div><div class="line">    /// &lt;/summary&gt;</div><div class="line">    class Program</div><div class="line">    &#123;</div><div class="line">        public delegate void PrintDelegate(string s);</div><div class="line">        static void Main(string[] args)</div><div class="line">        &#123;</div><div class="line">            PrintDelegate printDelegate = Print;</div><div class="line">            Console.WriteLine(&quot;主线程&quot;);</div><div class="line"></div><div class="line">            IAsyncResult result= printDelegate.BeginInvoke(&quot;Hello World.&quot;, null, null);</div><div class="line">            Console.WriteLine(&quot;主线程继续执行...&quot;);</div><div class="line">            //当使用BeginInvoke异步调用方法时，如果方法未执行完，EndInvoke方法就会一直阻塞，直到被调用的方法执行完毕</div><div class="line">            printDelegate.EndInvoke(result);</div><div class="line"></div><div class="line">            Console.WriteLine(&quot;Press any key to continue...&quot;);</div><div class="line">            Console.ReadKey(true);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        public static void Print(string s)</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;异步线程开始执行：&quot;+s);</div><div class="line">            Thread.Sleep(5000);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://pic002.cnblogs.com/images/2012/281227/2012110214543333.png" alt="enter image description here"></p>
-<h2 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h2><p>WaitOne。同样属于“等待”类。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">using System;</div><div class="line">using System.Collections.Generic;</div><div class="line">using System.Linq;</div><div class="line">using System.Text;</div><div class="line">using System.Threading;</div><div class="line"></div><div class="line">namespace 异步调用实现方法汇总2</div><div class="line">&#123;</div><div class="line">    /// &lt;summary&gt;</div><div class="line">    /// 异步调用方法总结：</div><div class="line">    /// 2.WaitOne</div><div class="line">    /// 可以看到，与EndInvoke类似，只是用WaitOne函数代码了EndInvoke而已。</div><div class="line">    /// &lt;/summary&gt;</div><div class="line">    class Program</div><div class="line">    &#123;</div><div class="line">        public delegate void PrintDelegate(string s);</div><div class="line">        static void Main(string[] args)</div><div class="line">        &#123;</div><div class="line">            PrintDelegate printDelegate = Print;</div><div class="line">            Console.WriteLine(&quot;主线程&quot;);</div><div class="line">            IAsyncResult result = printDelegate.BeginInvoke(&quot;Hello World.&quot;, null, null);</div><div class="line">            Console.WriteLine(&quot;主线程继续执行...&quot;);</div><div class="line">            result.AsyncWaitHandle.WaitOne(-1, false);</div><div class="line"></div><div class="line">            Console.WriteLine(&quot;Press any key to continue...&quot;);</div><div class="line">            Console.ReadKey(true);</div><div class="line">        &#125;</div><div class="line">        public static void Print(string s)</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;异步线程开始执行：&quot; + s);</div><div class="line">            Thread.Sleep(5000);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><img src="http://pic002.cnblogs.com/images/2012/281227/2012110214584264.png" alt="enter image description here"></p>
-<h2 id="第三种方法"><a href="#第三种方法" class="headerlink" title="第三种方法"></a>第三种方法</h2><p>轮询。也是属于“等待”类。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">using System;</div><div class="line">using System.Collections.Generic;</div><div class="line">using System.Linq;</div><div class="line">using System.Text;</div><div class="line">using System.Threading;</div><div class="line"></div><div class="line">namespace 异步调用实现方法汇总3</div><div class="line">&#123;</div><div class="line">    /// &lt;summary&gt;</div><div class="line">    /// 异步调用方法总结：</div><div class="line">    /// 3.轮询</div><div class="line">    /// 之前提到的两种方法，只能等下异步方法执行完毕，</div><div class="line">    /// 在完毕之前没有任何提示信息，整个程序就像没有响应一样，用户体验不好，</div><div class="line">    /// 可以通过检查IasyncResult类型的IsCompleted属性来检查异步调用是否完成，</div><div class="line">    /// 如果没有完成，则可以适时地显示一些提示信息</div><div class="line">    /// &lt;/summary&gt;</div><div class="line">    class Program</div><div class="line">    &#123;</div><div class="line">        public delegate void PrintDelegate(string s);</div><div class="line">        static void Main(string[] args)</div><div class="line">        &#123;</div><div class="line">            PrintDelegate printDelegate = Print;</div><div class="line">            Console.WriteLine(&quot;主线程:&quot;+Thread.CurrentThread.ManagedThreadId );</div><div class="line">            IAsyncResult result = printDelegate.BeginInvoke(&quot;Hello world.&quot;, null, null);</div><div class="line">            Console.WriteLine(&quot;主线程:&quot; + Thread.CurrentThread.ManagedThreadId + &quot;,继续执行...&quot;);</div><div class="line">            while (!result.IsCompleted)</div><div class="line">            &#123;</div><div class="line">                Console.WriteLine(&quot;.&quot;);</div><div class="line">                Thread.Sleep(500);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            Console.WriteLine(&quot;主线程:&quot; + Thread.CurrentThread.ManagedThreadId + &quot;  Press any key to continue...&quot;);</div><div class="line">            Console.ReadKey(true);</div><div class="line">        &#125;</div><div class="line">        public static void Print(string s)</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;当前线程：&quot; + Thread.CurrentThread.ManagedThreadId + s);</div><div class="line">            Thread.Sleep(5000);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><img src="http://pic002.cnblogs.com/images/2012/281227/2012110215012952.png" alt="enter image description here"></p>
-<h2 id="第四种方法"><a href="#第四种方法" class="headerlink" title="第四种方法"></a>第四种方法</h2><p>回调。当然属于“回调”类。推荐！！！！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">using System;</div><div class="line">using System.Collections.Generic;</div><div class="line">using System.Linq;</div><div class="line">using System.Text;</div><div class="line">using System.Threading;</div><div class="line"></div><div class="line">namespace 异步调用实现方法汇总4</div><div class="line">&#123;</div><div class="line">    /// &lt;summary&gt;</div><div class="line">    /// 异步调用方法总结：</div><div class="line">    /// 4.回调</div><div class="line">    /// 之前三种方法者在等待异步方法执行完毕后才能拿到执行的结果，期间主线程均处于等待状态。</div><div class="line">    /// 回调和它们最大的区别是，在调用BeginInvoke时只要提供了回调方法，那么主线程就不必要再等待异步线程工作完毕，</div><div class="line">    /// 异步线程在工作结束后会主动调用我们提供的回调方法，并在回调方法中做相应的处理，例如显示异步调用的结果。</div><div class="line">    /// &lt;/summary&gt;</div><div class="line">    class Program</div><div class="line">    &#123;</div><div class="line">        public delegate void PrintDelegate(string s);</div><div class="line">        static void Main(string[] args)</div><div class="line">        &#123;</div><div class="line">            PrintDelegate printDelegate = Print;</div><div class="line">            Console.WriteLine(&quot;主线程.&quot;);</div><div class="line">            printDelegate.BeginInvoke(&quot;Hello world.&quot;, PrintComeplete, printDelegate);</div><div class="line">            Console.WriteLine(&quot;主线程继续执行...&quot;);</div><div class="line"></div><div class="line">            Console.WriteLine(&quot;Press any key to continue...&quot;);</div><div class="line">            Console.ReadKey(true);</div><div class="line">        &#125;</div><div class="line">        public static void Print(string s)</div><div class="line">        &#123; </div><div class="line">            Console.WriteLine(&quot;当前线程：&quot;+s);</div><div class="line">            Thread.Sleep(5000);</div><div class="line">        &#125;</div><div class="line">        //回调方法要求</div><div class="line">        //1.返回类型为void</div><div class="line">        //2.只有一个参数IAsyncResult</div><div class="line">        public static void PrintComeplete(IAsyncResult result)</div><div class="line">        &#123;</div><div class="line">            (result.AsyncState as PrintDelegate).EndInvoke(result);</div><div class="line">            Console.WriteLine(&quot;当前线程结束.&quot; + result.AsyncState.ToString());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><img src="http://pic002.cnblogs.com/images/2012/281227/2012110215043566.png" alt="enter image description here"></p>
-<p>通过EndInvoke方法得到同步函数的返回值。上面的同步方法返回值为void，我们给个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">using System.Diagnostics;</div><div class="line">using System.Threading;</div><div class="line">using System.Windows;</div><div class="line"></div><div class="line">namespace TestDelegateWrapper</div><div class="line">&#123;</div><div class="line">    /// &lt;summary&gt;</div><div class="line">    /// Interaction logic for MainWindow.xaml</div><div class="line">    /// &lt;/summary&gt;</div><div class="line">    public partial class MainWindow : Window</div><div class="line">    &#123;</div><div class="line">        public MainWindow()</div><div class="line">        &#123;</div><div class="line">            InitializeComponent();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)</div><div class="line">        &#123;</div><div class="line">            WrapperSyncMethodAsync(&quot;ABC&quot;);</div><div class="line"></div><div class="line">            Trace.WriteLine(&quot;Main thread continue...&quot;);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        private delegate string SyncMethod1Delegate(string str);</div><div class="line">        </div><div class="line">        private void WrapperSyncMethodAsync(string str)</div><div class="line">        &#123;</div><div class="line">            SyncMethod1Delegate syncMethod1Delegate = SyncMethod1;</div><div class="line">            syncMethod1Delegate.BeginInvoke(str, x =&gt;</div><div class="line">            &#123;</div><div class="line">                var result= syncMethod1Delegate.EndInvoke(x);</div><div class="line"></div><div class="line">                // using the result to do something</div><div class="line">                Trace.WriteLine(result);</div><div class="line">            &#125;, null);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        private string SyncMethod1(string str)</div><div class="line">        &#123;</div><div class="line">            Thread.Sleep(2000);</div><div class="line">            return str;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>输出如下：</p>
-<p>Main thread continue…<br>ABC</p>
-<p>##参考<br><a href="http://www.cnblogs.com/DebugLZQ/archive/2012/11/02/2751272.html" target="_blank" rel="external">http://www.cnblogs.com/DebugLZQ/archive/2012/11/02/2751272.html</a></p>
+        <p><img src="/img/indexbg.png" alt="Alt text"></p>
 
       
 
@@ -240,25 +221,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">异步</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -309,7 +271,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/31/异步编程四种方法/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/index/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -321,16 +283,6 @@
 </article>
 
   
-<nav id="article-nav">
-  
-  
-    <a href="/2017/07/31/欢迎使用马克飞象/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">马克飞象官方文档</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -379,7 +331,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
