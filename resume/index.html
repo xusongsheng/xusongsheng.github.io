@@ -6,22 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>浅谈异步多线程 | Song&#39;s Blog</title>
+  <title>Song&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="异步操作的本质所有的程序最终都会由计算机硬件来执行，所以为了更好的理解异步操作的本质，我们有必要了解一下它的硬件基础。 熟悉电脑硬件的朋友肯定对DMA这个词不陌生，硬盘、光驱的技术规格中都有明确DMA的模式指标，其实网卡、声卡、显卡也是有DMA功能的。DMA就是直 接内存访问的意思，也就是说，拥有DMA功能的硬件在和内存进行数据交换的时候可以不消耗CPU资源。只要CPU在发起数据传输时发送一个指令">
-<meta name="keywords" content="C#,多线程,异步">
-<meta property="og:type" content="article">
-<meta property="og:title" content="浅谈异步多线程">
-<meta property="og:url" content="http://yoursite.com/2017/07/31/浅谈异步多线程/index.html">
+  <meta name="description" content="个人简历   123">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Song&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/resume/index.html">
 <meta property="og:site_name" content="Song&#39;s Blog">
-<meta property="og:description" content="异步操作的本质所有的程序最终都会由计算机硬件来执行，所以为了更好的理解异步操作的本质，我们有必要了解一下它的硬件基础。 熟悉电脑硬件的朋友肯定对DMA这个词不陌生，硬盘、光驱的技术规格中都有明确DMA的模式指标，其实网卡、声卡、显卡也是有DMA功能的。DMA就是直 接内存访问的意思，也就是说，拥有DMA功能的硬件在和内存进行数据交换的时候可以不消耗CPU资源。只要CPU在发起数据传输时发送一个指令">
+<meta property="og:description" content="个人简历   123">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pic002.cnblogs.com/images/2012/281227/2012090421072280.png">
-<meta property="og:updated_time" content="2017-08-03T11:19:33.268Z">
+<meta property="og:updated_time" content="2017-09-14T03:11:58.558Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅谈异步多线程">
-<meta name="twitter:description" content="异步操作的本质所有的程序最终都会由计算机硬件来执行，所以为了更好的理解异步操作的本质，我们有必要了解一下它的硬件基础。 熟悉电脑硬件的朋友肯定对DMA这个词不陌生，硬盘、光驱的技术规格中都有明确DMA的模式指标，其实网卡、声卡、显卡也是有DMA功能的。DMA就是直 接内存访问的意思，也就是说，拥有DMA功能的硬件在和内存进行数据交换的时候可以不消耗CPU资源。只要CPU在发起数据传输时发送一个指令">
-<meta name="twitter:image" content="http://pic002.cnblogs.com/images/2012/281227/2012090421072280.png">
+<meta name="twitter:title" content="Song&#39;s Blog">
+<meta name="twitter:description" content="个人简历   123">
   
     <link rel="alternative" href="/atom.xml" title="Song&#39;s Blog" type="application/atom+xml">
   
@@ -165,37 +162,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-浅谈异步多线程" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      浅谈异步多线程
-    </h1>
-  
-
-        
-        <a href="/2017/07/31/浅谈异步多线程/" class="archive-article-date">
-  	<time datetime="2017-07-31T13:03:17.309Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-31</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="异步操作的本质"><a href="#异步操作的本质" class="headerlink" title="异步操作的本质"></a>异步操作的本质</h2><p>所有的程序最终都会由计算机硬件来执行，所以为了更好的理解异步操作的本质，我们有必要了解一下它的硬件基础。 熟悉电脑硬件的朋友肯定对DMA这个词不陌生，硬盘、光驱的技术规格中都有明确DMA的模式指标，其实网卡、声卡、显卡也是有DMA功能的。DMA就是直 接内存访问的意思，也就是说，拥有DMA功能的硬件在和内存进行数据交换的时候可以不消耗CPU资源。只要CPU在发起数据传输时发送一个指令，硬件就开 始自己和内存交换数据，在传输完成之后硬件会触发一个中断来通知操作完成。这些无须消耗CPU时间的I/O操作正是异步操作的硬件基础。所以即使在DOS 这样的单进程（而且无线程概念）系统中也同样可以发起异步的DMA操作。<br><a id="more"></a></p>
-<h2 id="线程的本质"><a href="#线程的本质" class="headerlink" title="线程的本质"></a>线程的本质</h2><p>线程不是一个计算机硬件的功能，而是操作系统提供的一种逻辑功能，线程本质上是进程中一段并发运行的代码，所以线程需要操作系统投入CPU资源来运行和调度。</p>
-<h2 id="异步操作优缺点"><a href="#异步操作优缺点" class="headerlink" title="异步操作优缺点"></a>异步操作优缺点</h2><p>因为异步操作无须额外的线程负担，并且使用回调的方式进行处理，在设计良好的情况下，处理函数可以不必使用共享变量（即使无法完全不用，最起码可以减少 共享变量的数量），减少了死锁的可能。当然异步操作也并非完美无暇。编写异步操作的复杂程度较高，程序主要使用回调方式进行处理，与普通人的思维方式有些出入，而且难以调试。</p>
-<h2 id="多线程优缺点"><a href="#多线程优缺点" class="headerlink" title="多线程优缺点"></a>多线程优缺点</h2><p>多线程的优点很明显，线程中的处理程序依然是顺序执行，符合普通人的思维习惯，所以编程简单。但是多线程的缺点也同样明显，线程的使用（滥用）会给系统带来上下文切换的额外负担。并且线程间的共享变量可能造成死锁的出现。</p>
-<h2 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h2><p>在了解了线程与异步操作各自的优缺点之后，我们可以来探讨一下线程和异步的合理用途。我认为：当需要执行I/O操作时，使用异步操作比使用线程+同步 I/O操作更合适。I/O操作不仅包括了直接的文件、网络的读写，还包括数据库操作、Web Service、HttpRequest以及.net Remoting等跨进程的调用。</p>
-<p>　　而线程的适用范围则是那种需要长时间CPU运算的场合，例如耗时较长的图形处理和算法执行。但是往往由于使用线程编程的简单和符合习惯，所以很多朋友往往会使用线程来执行耗时较长的I/O操作。这样在只有少数几个并发操作的时候还无伤大雅，如果需要处理大量的并发操作时就不合适了。</p>
-<h2 id="异步的一个示例"><a href="#异步的一个示例" class="headerlink" title="异步的一个示例"></a>异步的一个示例</h2><p>大家可能都知道，使用delegate可以“自动”使一个方法可以进行异步的调用。从直觉上来说，我觉得是由编译器或者CLR使用了另外的线程来执行目标方法。到底是不是这样呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">using System;</div><div class="line">using System.Threading;</div><div class="line">namespace 异步</div><div class="line">&#123;</div><div class="line">    delegate void AsyncFoo(int i);</div><div class="line">    class Program</div><div class="line">    &#123;</div><div class="line">        /// ﹤summary﹥   </div><div class="line">        /// 输出当前线程的信息   </div><div class="line">        /// ﹤/summary﹥      </div><div class="line">        /// ﹤param name=&quot;name&quot;﹥方法名称﹤/param﹥    </div><div class="line">        static void PrintCurrThreadInfo(string name)</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;Thread Id of &quot; + name + &quot; is: &quot; + Thread.CurrentThread.ManagedThreadId + &quot;, current thread is &quot;</div><div class="line">                + (Thread.CurrentThread.IsThreadPoolThread ? &quot;&quot; : &quot;not &quot;) + &quot;thread pool thread.&quot;);</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        /// ﹤summary﹥   </div><div class="line">        /// 测试方法，Sleep一定时间   </div><div class="line">        /// ﹤/summary﹥   </div><div class="line">        /// ﹤param name=&quot;i&quot;﹥Sleep的时间﹤/param﹥   </div><div class="line">        static void Foo(int i)</div><div class="line">        &#123;</div><div class="line">            PrintCurrThreadInfo(&quot;Foo()&quot;);</div><div class="line">            Thread.Sleep(i);</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        /// ﹤summary﹥   </div><div class="line">        /// 投递一个异步调用   </div><div class="line">        /// ﹤/summary﹥   </div><div class="line">        static void PostAsync()</div><div class="line">        &#123;</div><div class="line">            AsyncFoo caller = new AsyncFoo(Foo);</div><div class="line">            caller.BeginInvoke(1000, new AsyncCallback(FooCallBack), caller);</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        static void Main(string[] args)</div><div class="line">        &#123;</div><div class="line">            PrintCurrThreadInfo(&quot;Main()&quot;);</div><div class="line">            for (int i = 0; i &lt; 5; i++)</div><div class="line">            &#123;</div><div class="line">                PostAsync();</div><div class="line">            &#125;</div><div class="line">            Console.ReadLine();</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        static void FooCallBack(IAsyncResult ar)</div><div class="line">        &#123;</div><div class="line">            PrintCurrThreadInfo(&quot;FooCallBack()&quot;);</div><div class="line">            AsyncFoo caller = (AsyncFoo)ar.AsyncState;</div><div class="line">            caller.EndInvoke(ar);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>程序的输出如下：<br><img src="http://pic002.cnblogs.com/images/2012/281227/2012090421072280.png" alt="enter image description here"><br>看样子答案是肯定的。</p>
-<p>这个示例程序很好，基本上可以说是一个异步的使用规范模板了吧，个中含义不多说了。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.cnblogs.com/DebugLZQ/archive/2012/09/05/2670986.html" target="_blank" rel="external">http://www.cnblogs.com/DebugLZQ/archive/2012/09/05/2670986.html</a></p>
-
+        <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>个人简历</title>
+</head>
+<body>
+123
+</body></html>
       
 
       
@@ -234,25 +214,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">异步</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -303,7 +264,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/31/浅谈异步多线程/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/resume/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -315,25 +276,6 @@
 </article>
 
   
-<nav id="article-nav">
-  
-    <a href="/2017/07/31/欢迎使用马克飞象/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          马克飞象官方文档
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/07/29/hexo搭建/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hexo搭建网站教程</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -382,7 +324,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

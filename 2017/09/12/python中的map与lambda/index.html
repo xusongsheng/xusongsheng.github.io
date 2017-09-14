@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Song&#39;s Blog">
 <meta property="og:description" content="最近看了一点python的基础知识，发现python中的map与lambda很好用，做下记录。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-14T03:04:33.054Z">
+<meta property="og:updated_time" content="2017-09-14T03:09:31.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python中的map与lambda">
 <meta name="twitter:description" content="最近看了一点python的基础知识，发现python中的map与lambda很好用，做下记录。">
@@ -184,12 +184,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>最近看了一点python的基础知识，发现python中的map与lambda很好用，做下记录。<br><a id="more"></a></p>
-<h1 id="首先是map-函数"><a href="#首先是map-函数" class="headerlink" title="首先是map()函数"></a>首先是map()函数</h1><p>map()函数的作用就是将一个函数用到一个列表的所有元素上，是一个python中的高级函数。<br>例如：<br>‘’’<br>def g(x):<br>    x += 1<br>a = [1,2,3]<br>b = map(g,a)<br>‘’’<br>这段代码的作用就是把函数g作用在a列表的每一个函数上，也就是将a列表中的[1,2,3]全部加一。<br>作用相当于：<br>‘’’<br>a = [1, 2, 3]<br>b = []<br>for each in a:<br>    b.append(each+1)<br>‘’’</p>
-<p>我们也可以在函数中添加两个或多个参数，形式为：<br>‘’’<br>def f(x,y):<br>    return x+y<br>a = [1,2,3]<br>b = [1,2,3]<br>c = map(f,a,b)<br>‘’’</p>
+<h1 id="首先是map-函数"><a href="#首先是map-函数" class="headerlink" title="首先是map()函数"></a>首先是map()函数</h1><p>map()函数的作用就是将一个函数用到一个列表的所有元素上，是一个python中的高级函数。<br>例如：<br>‘’’ python<br>def g(x):<br>    x += 1<br>a = [1,2,3]<br>b = map(g,a)<br>‘’’<br>这段代码的作用就是把函数g作用在a列表的每一个函数上，也就是将a列表中的[1,2,3]全部加一。<br>作用相当于：<br>‘’’ python<br>a = [1, 2, 3]<br>b = []<br>for each in a:<br>    b.append(each+1)<br>‘’’</p>
+<p>我们也可以在函数中添加两个或多个参数，形式为：<br>‘’’ python<br>def f(x,y):<br>    return x+y<br>a = [1,2,3]<br>b = [1,2,3]<br>c = map(f,a,b)<br>‘’’</p>
 <p>但是即使函数中参数不多，甚至没有参数，我们都需要定义函数执行map，这样就会十分繁琐，这时我们就可以用到另一个函数。</p>
-<h2 id="Lambda函数"><a href="#Lambda函数" class="headerlink" title="Lambda函数"></a>Lambda函数</h2><p>lambda函数也可以叫做隐藏函数，我理解为没有名字的函数，这个函数的作用就是无需新建一个函数但可以实现一个函数的功能。<br>例如：<br>‘’’<br>b = lambda a:a+1<br>‘’’<br>b就是lambda函数的返回值，a是其中的参数。</p>
-<p>也可以有多个参数：<br>z = lambda x,y:x+y</p>
-<p>将lambda函数用在map函数中，<br>‘’’<br>a = [1,2,3]<br>b = [1,2,3]<br>c = map(lambda x,y:x+y,a,b)<br>for each in c:<br>    print(each)<br>‘’’</p>
+<h2 id="Lambda函数"><a href="#Lambda函数" class="headerlink" title="Lambda函数"></a>Lambda函数</h2><p>lambda函数也可以叫做隐藏函数，我理解为没有名字的函数，这个函数的作用就是无需新建一个函数但可以实现一个函数的功能。<br>例如：<br>‘’’ python<br>b = lambda a:a+1<br>‘’’<br>b就是lambda函数的返回值，a是其中的参数。</p>
+<p>也可以有多个参数：<br>‘’’ python<br>z = lambda x,y:x+y<br>‘’’<br>将lambda函数用在map函数中，<br>‘’’ python<br>a = [1,2,3]<br>b = [1,2,3]<br>c = map(lambda x,y:x+y,a,b)<br>for each in c:<br>    print(each)<br>‘’’</p>
 
       
 
@@ -434,14 +433,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">函数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -451,6 +442,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">教程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
